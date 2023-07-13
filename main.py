@@ -68,24 +68,6 @@ def main():
     col_weight, col_age = st.columns(2)
 
     adjustment_weight, adjustment_age = 1, 0
-
-    with col_weight:
-        adjust_weight = st.checkbox(
-            label="Weight adjust",
-            value=False
-        )
-        if adjust_weight:
-            try:
-                weight = float(
-                    st.text_input(
-                        label="Weight at time of test",
-                        value=""
-                    )
-                )
-                adjustment_weight = (weight / 270) ** (0.222)
-            except ValueError:
-                st.write("Please enter a number")
-
     with col_age:
         adjust_age = st.checkbox(
             label="Age adjust",
@@ -101,10 +83,28 @@ def main():
                 )
                 distance_factor = piece_distance / 1000
                 age = 27 if age < 27 else age
-                adjustment_age = distance_factor * ((age - 27) ** 2 * (0.02))
+                adjustment_age = distance_factor * (((age - 27) ** 2) * 0.02)
 
             except ValueError:
                 st.write("Please enter an integer")
+
+    with col_weight:
+        adjust_weight = st.checkbox(
+            label="Weight adjust",
+            value=False
+        )
+        if adjust_weight:
+            try:
+                weight = float(
+                    st.text_input(
+                        label="Weight at time of test",
+                        value=""
+                    )
+                )
+                adjustment_weight = (weight / 270) ** 0.222
+            except ValueError:
+                st.write("Please enter a number")
+
     total_seconds_adjusted = round(
         total_seconds * adjustment_weight - adjustment_age,
         1
