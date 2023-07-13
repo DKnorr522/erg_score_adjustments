@@ -4,7 +4,7 @@ import streamlit as st
 def seconds_to_time_formatted(seconds):
     minutes = int(seconds / 60)
     seconds = round(seconds % 60, 2)
-    time_formatted = f"{minutes}:{seconds:%02.1f}"
+    time_formatted = f"{minutes}:{seconds.zfill(2)}"
     return time_formatted
 
 
