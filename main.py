@@ -65,7 +65,7 @@ def main():
 
     total_seconds = minutes * 60 + seconds
 
-    col_weight, col_age = st.columns(2)
+    col_age, col_weight = st.columns(2)
 
     adjustment_weight, adjustment_age = 1, 0
     with col_age:
