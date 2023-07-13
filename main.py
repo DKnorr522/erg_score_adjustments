@@ -2,9 +2,10 @@ import streamlit as st
 
 
 def seconds_to_time_formatted(seconds):
+    tenths = int((seconds % 1) * 10)
     minutes = int(seconds / 60)
-    seconds = round(seconds % 60, 2)
-    time_formatted = f"{minutes}:{seconds.zfill(2)}"
+    seconds = int(seconds % 60)
+    time_formatted = f"{minutes}:{seconds:02d}.{tenths}"
     return time_formatted
 
 
